@@ -7,26 +7,26 @@ import urllib.request
 from datetime import datetime, timedelta, date
 from sklearn.preprocessing import MinMaxScaler
 
-def data_load(selectedcountry):
-    covid_url = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
-    covid = pd.read_csv(covid_url, parse_dates=['date'], index_col=['date'])
-    # We filter the country, dates and the variable to predict
+#def data_load(selectedcountry):
+#    covid_url = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
+#    covid = pd.read_csv(covid_url, parse_dates=['date'], index_col=['date'])
+#    # We filter the country, dates and the variable to predict
 
-    country = selectedcountry
-    variable = 'new_cases' #we could make it a selectbox
-    initialdate = '2020-01-01'   # first day of the year, where most of our data starts
-    initialdateshift = str(date.fromordinal(datetime.strptime(initialdate, '%Y-%m-%d').toordinal() + 6))
-    enddate = str(date.fromordinal(date.today().toordinal()-1))   # yesterday's date: last day of available data
+#    country = selectedcountry
+#    variable = 'new_cases' #we could make it a selectbox
+#    initialdate = '2020-01-01'   # first day of the year, where most of our data starts
+#    initialdateshift = str(date.fromordinal(datetime.strptime(initialdate, '%Y-%m-%d').toordinal() + 6))
+#    enddate = str(date.fromordinal(date.today().toordinal()-1))   # yesterday's date: last day of available data
 
     # Filtering country and dates
-    covid_ctry = covid[covid['location']==country]
-    covid_ctry = covid_ctry.loc[initialdate:enddate]
+#    covid_ctry = covid[covid['location']==country]
+#    covid_ctry = covid_ctry.loc[initialdate:enddate]
 
     # Filter the variable to predict and applying 7-day rolling mean
-    covid_ctry_var = covid_ctry[variable]
-    covid_ctry_varR = covid_ctry_var.rolling(7).mean().dropna()
+#    covid_ctry_var = covid_ctry[variable]
+#    covid_ctry_varR = covid_ctry_var.rolling(7).mean().dropna()
     
-    return covid_ctry_varR
+#    return covid_ctry_varR
 
 
 # Create a title, a subheader.
