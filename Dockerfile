@@ -15,10 +15,10 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 # Expose port 
-ENV PORT 8501
+ENV PORT 8080
 
 # cmd to launch app when container is run
-CMD streamlit run app.py
+CMD streamlit run streamlit.py --server.port 8080
 
 # streamlit-specific commands for config
 ENV LC_ALL=C.UTF-8
