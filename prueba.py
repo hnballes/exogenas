@@ -53,7 +53,14 @@ st.sidebar.text("0 - no contact tracing\n1 - limited contact tracing; not done f
 tracing = st.sidebar.slider('choose the contact tracing policy applied next week:', 0, 3, 1)
 tracing2 = st.sidebar.slider('choose the contact tracing policy applied the week after:', 0, 3, 1)
 
+#exogenas
 exogenas=pd.read_csv("https://raw.githubusercontent.com/hnballes/exogenas/master/exogenas.csv", parse_dates=[0], index_col=[0])
 exogenas= exogenas.loc[:, exogenas.columns.str.contains(country)]
 exogenas = exogenas.loc[initialdateshift:enddate]
 st.dataframe(exogenas)
+
+#futur exogenous
+new_index = pd.date_range(date.fromordinal(date.today().toordinal()), date.fromordinal(date.today().toordinal()+13))
+futur=pd.DataFrame(exogenas.iloc[-1:,:],index=new_index)
+futur.iloc[0,:]=exogenas.iloc[-1,:]
+futur.fillna(method="ffill",inplace=True)
