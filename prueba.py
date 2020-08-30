@@ -34,18 +34,18 @@ st.title("Coronavirus forecast")
 st.subheader("This is an app for predicting new number of coronavirus cases during two weeks according to public data. ")
 
 #chooose a country to predict the cases
-st.title("Choose a country")
-country = st.selectbox("", ("Denmark","Germany","Spain","Finland","Italy","Sweden","France","Norway","United Kingdom","United States","Canada","Mexico","Australia","Indonesia","Malaysia","Philippines","Thailand","Hong Kong","Vietnam","China","India","Japan","Singapore","Taiwan","Saudi Arabia","United Arab Emirates"))
+st.sidebar.title("Choose a country")
+country = st.sidebar.selectbox("", ("Denmark","Germany","Spain","Finland","Italy","Sweden","France","Norway","United Kingdom","United States","Canada","Mexico","Australia","Indonesia","Malaysia","Philippines","Thailand","Hong Kong","Vietnam","China","India","Japan","Singapore","Taiwan","Saudi Arabia","United Arab Emirates"))
 
 #select the values of the 2 diferent variables
-st.subheader("testing policy")
-st.text("0 - no testing policy\n1 - only those who both (a) have symptoms AND (b) meet specific criteria (eg key workers)\n2 - testing of anyone showing Covid-19 symptoms\n3 - open public testing (eg drive through testing available to asymptomatic people")
+st.sidebar.subheader("testing policy")
+st.sidebar.text("0 - no testing policy\n1 - only those who both (a) have symptoms AND (b) meet specific criteria (eg key workers)\n2 - testing of anyone showing Covid-19 symptoms\n3 - open public testing (eg drive through testing available to asymptomatic people")
 
-testing = st.slider('choose the testing policy applied next week:', 0, 3, 1)
-testing2 = st.slider('choose the testing policy applied the week after:', 0, 3, 1)
+testing = st.sidebar.slider('choose the testing policy applied next week:', 0, 3, 1)
+testing2 = st.sidebar.slider('choose the testing policy applied the week after:', 0, 3, 1)
 
-st.subheader("Record government policy on contact tracing after a positive diagnosis")
-st.text("0 - no contact tracing\n1 - limited contact tracing; not done for all cases\n2 - comprehensive contact tracing; done for all identified cases")
+st.sidebar.subheader("Record government policy on contact tracing after a positive diagnosis")
+st.sidebar.text("0 - no contact tracing\n1 - limited contact tracing; not done for all cases\n2 - comprehensive contact tracing; done for all identified cases")
 
-tracing = st.slider('choose the contact tracing policy applied next week:', 0, 3, 1)
-tracing2 = st.slider('choose the contact tracing policy applied the week after:', 0, 3, 1)
+tracing = st.sidebar.slider('choose the contact tracing policy applied next week:', 0, 3, 1)
+tracing2 = st.sidebar.slider('choose the contact tracing policy applied the week after:', 0, 3, 1)
