@@ -64,3 +64,11 @@ new_index = pd.date_range(date.fromordinal(date.today().toordinal()), date.fromo
 futur=pd.DataFrame(exogenas.iloc[-1:,:],index=new_index)
 futur.iloc[0,:]=exogenas.iloc[-1,:]
 futur.fillna(method="ffill",inplace=True)
+
+#change the values introduced by the user in the futur exogenous dataframe
+futur.loc[date.today():date.fromordinal(date.today().toordinal()+6),"testingpolicy_{}".format(country)]=7*[testing]
+futur.loc[date.fromordinal(date.today().toordinal()+7):,"testingpolicy_{}".format(country)]=7*[testing2]
+futur.loc[date.today():date.fromordinal(date.today().toordinal()+6),"contacttracing_{}".format(country)]=7*[tracing]
+futur.loc[date.fromordinal(date.today().toordinal()+7):,"contacttracing_{}".format(country)]=7*[tracing2]
+
+st.dataframe(futur)
