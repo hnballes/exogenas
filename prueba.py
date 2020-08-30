@@ -72,3 +72,10 @@ futur.loc[date.today():date.fromordinal(date.today().toordinal()+6),"contacttrac
 futur.loc[date.fromordinal(date.today().toordinal()+7):,"contacttracing_{}".format(country)]=7*[tracing2]
 
 st.dataframe(futur)
+
+sc_in_fc = MinMaxScaler(feature_range=(0, 1))
+exogen_joined=pd.concat([exogenas,futur])
+scaled_input_fc = sc_in_fc.fit_transform(exogen_joined)
+scaled_input_fc = pd.DataFrame(scaled_input_fc, index=exogen_joined.index ,columns=exogen_joined.columns)
+X_fc = scaled_input_fc
+st.line_chart(X_fc)
