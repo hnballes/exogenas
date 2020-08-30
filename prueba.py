@@ -79,3 +79,16 @@ scaled_input_fc = sc_in_fc.fit_transform(exogen_joined)
 scaled_input_fc = pd.DataFrame(scaled_input_fc, index=exogen_joined.index ,columns=exogen_joined.columns)
 X_fc = scaled_input_fc
 st.line_chart(X_fc)
+
+#Load right model and make the predictions
+model = joblib.load(urllib.request.urlopen("https://github.com/hnballes/exogenas/raw/master/SpainSARIMAXmodel(1).pkl"))
+#model = joblib.load("/home/dsc/proyecto/data/{}SARIMAXmodel.pkl".format(country))
+#model = joblib.load("/home/dsc/proyecto/data/SpainSARIMAXmodel.pkl")
+#predictions
+results=model.get_forecast(steps=14,exog=exogen_joined.iloc[-14:,:])
+st.header("Number of cases next two weeks:")
+st.dataframe(results.predicted_mean.rename("Prediction"))
+st.subheader("Graph")
+new_cases=data_load(country)
+st.line_chart(results.predicted_mean)
+st.line_chart(new_cases)
